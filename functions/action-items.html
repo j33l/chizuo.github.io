@@ -8,13 +8,12 @@
         <title>Team 1 - Project 3</title>
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
-        <script src="./modules/functionals.js"></script>
+        <link rel="stylesheet" href="../style.css">
+        <script src="./scripts/action-items.js"></script>
     </head>  
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img src="logo.png"></a>
+            <a class="navbar-brand" href="../index.html"><img src="../logo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,7 +26,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">New</a>
-                            <a class="dropdown-item" href="#">Open</a>
+                            <a id="open" class="dropdown-item" href="#">Open</a>
                             <a class="dropdown-item" href="#">Save</a>
                         <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Exit</a>
@@ -98,45 +97,33 @@
         <main role="main">
             <div id="jumbotron" class="jumbotron">
                 <div class="container">
-                    <h1 class="display-4">Program Management Institute</h1>
-                    <p>This is the opening page when the software is first launched</p>
-                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Start a new project >></a></p>
+                    <h1 class="display-4">Action-Items</h1>
+                    <p>This is the main banner for the Action-Items work area</p>
+                    <p><button id="new-action-item-button" class="btn btn-primary btn-lg" role="button">Create a new Action Item >></button></p>
                 </div>
             </div>
     
-            <div id="app-body" class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <p><a id="action-items-button" href="./functions/action-items.html" class="btn btn-secondary" role="button">Go to Action Items »</a></p>
-                        <p>An Action Item is an activity that must be performed to facilitate the resolution of an Issue. Unlike Tasks, Action Items are not decomposed.</p>
+            <div class="container">
+                <form id="form-container">
+                    <div class="form-group">
+                        <label for="action-items">Action Items</label>
+                        <select class="form-control" id="action-items">
+                            <option></option>
+                            <option value="AI1">'AI-736789', 'Replace Antenna Module#455'</option>
+                            <option value="AI2">'AI-774577', 'Optimize Tracking Software'</option>
+                            <option value="AI3">'AI-434151', 'Improve Load Speeds'</option>
+                            <option value="AI4">'AI-835510', 'Replace Process for Logic Board #77'</option>
+                            <option value="AI5">'AI-482946', 'Change Memory Supplier'</option>
+                            <option value="AI6">'AI-270087', 'Resolve Process Supply Chain'</option>
+                        </select>
                     </div>
-                    <div class="col-md-4">
-                        <p><a class="btn btn-secondary" href="#" role="button">Go to Decisions »</a></p>
-                        <p>A Decision is a conclusion reached by an individual or a group charged with making the Decision. Like an Issue, a Decision or lack thereof, will affect the successful completion of a Task. As such, Decisions are associated with Task.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p><a class="btn btn-secondary" href="#" role="button">Go to Issues »</a></p>
-                        <p>An Issue is a concern, problem or an outstanding question that prevents a Resource from completing a Task. As such, Issues are associated with Task. More than one Issue can be associated with a Task and sometimes an issue may affect multiple tasks.  </p>          
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p><a class="btn btn-secondary" href="#" role="button">Go to Resources »</a></p>
-                        <p>A Resource is person, employee or contractor that can be assigned to a Task.</p>          
-                    </div>
-                    <div class="col-md-4">
-                        <p><a class="btn btn-secondary" href="#" role="button">Go to Risks »</a></p>
-                        <p>A Risk is an uncertain event or condition that if it occurs, has a positive or negative effect on the project. Risks may be associated with one or more Deliverables or one or more Tasks.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p><a class="btn btn-secondary" href="#" role="button">Go to Tasks »</a></p>
-                        <p>All Tasks that comprise the project must be completed for the successful delivery of the project.</p>
-                    </div>
-                </div>
+                    <input id="load-button" class="btn btn-primary" type="submit" value="Open">
+                </form>
                 <hr>
             </div> 
         </main>
+
+        <div id="testContainer"></div>
         
         <footer class="container">
             <p>© COMP582 Fall 2022 by Team 1</p>
