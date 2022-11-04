@@ -2,7 +2,7 @@ const db_actionItems = new Map();
 
 function newActionItem() {
     let form = document.getElementById("form-container");
-    let uid = 'AI-' + (Math.floor(Math.random() * 999999) + 100000);
+    let uid = 'R-' + (Math.floor(Math.random() * 999999) + 100000);
     let dateCreated = new Date();
 
     form.innerHTML = `
