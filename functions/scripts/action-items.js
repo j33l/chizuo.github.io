@@ -27,8 +27,8 @@ function newActionItem() {
             <input id="date-assigned" class="form-control" type="date">
         </div>
         <div class="form-group">
-            <label for="resources">Resource Assigned</label>
-            <select class="form-control" id="resources">
+            <label for="action-itemss">Action Item Assigned</label>
+            <select class="form-control" id="action-itemss">
                 <option></option>
                 <option>'R-136789', 'Sari Ajina'</option>
                 <option>'R-144577', 'Jonathan Chua'</option>
@@ -74,8 +74,8 @@ function loadActionItems() {
     let form = document.getElementById("form-container");
     form.innerHTML = `
     <div class="form-group">
-        <label for="resources">Resource Assigned</label>
-        <select class="form-control" id="resources">
+        <label for="action-items">Action Item Assigned</label>
+        <select class="form-control" id="action-items">
             <option></option>
             <option id="1">'AI-736789', 'Replace Antenna Module#455'</option>
             <option id="2">'AI-774577', 'Optimize Tracking Software'</option>
