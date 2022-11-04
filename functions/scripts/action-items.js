@@ -77,12 +77,12 @@ function loadActionItems() {
         <label for="action-items">Action Item Assigned</label>
         <select class="form-control" id="action-items">
             <option></option>
-            <option id="1">'AI-736789', 'Replace Antenna Module#455'</option>
-            <option id="2">'AI-774577', 'Optimize Tracking Software'</option>
-            <option id="3">'AI-434151', 'Improve Load Speeds'</option>
-            <option id="4">'AI-835510', 'Replace Process for Logic Board #77'</option>
-            <option id="5">'AI-482946', 'Change Memory Supplier'</option>
-            <option id="6">'AI-270087', 'Resolve Process Supply Chain'</option>
+            <option value="AI1">'AI-736789', 'Replace Antenna Module#455'</option>
+            <option value="AI2">'AI-774577', 'Optimize Tracking Software'</option>
+            <option value="AI3">'AI-434151', 'Improve Load Speeds'</option>
+            <option value="AI4">'AI-835510', 'Replace Process for Logic Board #77'</option>
+            <option value="AI5">'AI-482946', 'Change Memory Supplier'</option>
+            <option value="AI6">'AI-270087', 'Resolve Process Supply Chain'</option>
         </select>
     </div>
     <input class="btn btn-primary" type="submit" value="Load">`
