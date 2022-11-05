@@ -1,4 +1,4 @@
-const db_actionItems = [
+var db_actionItems = [
     { 
         uid: 'AI-736789', 
         name:'Replace Antenna Module#455',
@@ -40,8 +40,9 @@ const db_actionItems = [
     }
 ];
 
-const db_resource = ["Sari Ajina","Jonathan Chua","Mrunal Prakash Gavali","Alondra Gonzalez","Jeel Prakashkumar Patel","Parth Savaj"];
+const db_aiMapper = new Map([['AI-736789',0],['AI-774577',1],['AI-444573',2]]);
 const db_status = ["","Open","Closed","In Progress","Hold","Complete"];
+const db_resource = ["R-136789, Sari Ajina","R-144577, Jonathan Chua","R-734257, Mrunal Prakash Gavali","R-835510, Alondra Gonzalez","R-482946, Jeel Prakashkumar Patel","R-270087, Parth Savaj"];
 
 function newActionItem() {
     $("#appBody").replaceWith(`
@@ -68,15 +69,9 @@ function newActionItem() {
                     <input id="date-assigned" class="form-control" type="date">
                 </div>
                 <div class="form-group">
-                    <label for="action-items">Action Item Assigned</label>
-                    <select class="form-control" id="action-items">
+                    <label for="action-items">Resource Assigned</label>
+                    <select class="form-control" id="resource">
                         <option></option>
-                        <option>R-136789, Sari Ajina</option>
-                        <option>R-144577, Jonathan Chua</option>
-                        <option>R-734257, Mrunal Prakash Gavali</option>
-                        <option>R-835510, Alondra Gonzalez</option>
-                        <option>R-482946, Jeel Prakashkumar Patel</option>
-                        <option>R-270087, Parth Savaj</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -90,12 +85,6 @@ function newActionItem() {
                 <div class="form-group">
                     <label for="status">Status</label>
                     <select class="form-control" id="status">
-                        <option></option>
-                        <option>Open</option>
-                        <option>Closed</option>
-                        <option>In Progress</option>
-                        <option>Hold</option>
-                        <option>Complete</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -106,11 +95,24 @@ function newActionItem() {
                     <label for="update-date">Update Date</label>
                     <input id="update-date" class="form-control" type="text" placeholder="" readonly>
                 </div>
-                <input class="btn btn-primary" type="submit" value="Save">
+                <input class="btn btn-primary" type="submit" value="Save" id="save-button">
                 <input class="btn btn-danger" type="reset" value="Clear">
             </form>
         </div> 
     `);
+
+    for(let i = 0; i < db_status.length; i++) {
+        $("#status").append(`<option value=${i}>${db_status[i]}</option>`)
+    }
+
+    for(let i = 0; i < db_status.length; i++) {
+        $("#resource").append(`<option value=${i}>${db_resource[i]}</option>`)
+    }
+
+    $("#save-button").on("click", function() {
+        alert("entry saved")
+        location.reload();
+    });
 }
 
 function loadActionItems() {
@@ -121,14 +123,17 @@ function loadActionItems() {
                     <label for="action-items">Action Items</label>
                     <select class="form-control" id="action-items">
                         <option></option>
-                        <option value=0>AI-736789, Replace Antenna Module#455</option>
-                        <option value=1>AI-774577, Optimize Tracking Software</option>
                     </select>
                 </div>
                 <input onclick="openActionItem()" id="load-button" class="btn btn-primary" type="submit" value="Open">
             </form>
         </div> 
     `);
+
+    for(let i = 0; i < db_actionItems.length; i++) {
+        let { uid, name } = db_actionItems[i];
+        $("#action-items").append(`<option value=${i}>${uid} : ${name}</option>`);
+    }
 }
 
 function formatDate(date, month, year) {
@@ -165,15 +170,9 @@ function openActionItem() {
                 <input id="date-assigned" class="form-control" type="date" value="${formatDate(dateAssigned.getDate(),dateAssigned.getMonth(),dateAssigned.getFullYear())}">
             </div>
             <div class="form-group">
-                <label for="action-itemss">Action Item Assigned</label>
-                <select class="form-control" id="action-items">
+                <label for="resource">Action Item Assigned</label>
+                <select class="form-control" id="resource">
                     <option></option>
-                    <option value=0>R-136789, Sari Ajina</option>
-                    <option value=1>R-144577, Jonathan Chua</option>
-                    <option value=2>R-734257, Mrunal Prakash Gavali</option>
-                    <option value=3>R-835510, Alondra Gonzalez</option>
-                    <option value=4>R-482946, Jeel Prakashkumar Patel</option>
-                    <option value=5>R-270087, Parth Savaj</option>
                 </select>
             </div>
             <div class="form-group">
@@ -187,12 +186,6 @@ function openActionItem() {
             <div class="form-group">
                 <label for="status">Status</label>
                 <select class="form-control" id="status">
-                    <option value=0></option>
-                    <option value=1>Open</option>
-                    <option value=2>Closed</option>
-                    <option value=3>In Progress</option>
-                    <option value=4>Hold</option>
-                    <option value=5>Complete</option>
                 </select>
             </div>
             <div class="form-group">
@@ -203,19 +196,39 @@ function openActionItem() {
                 <label for="update-date">Update Date</label>
                 <input id="update-date" class="form-control" type="text" placeholder="${formatDate(updateDate.getDate(),updateDate.getMonth(),updateDate.getFullYear())}" readonly>
             </div>
-            <input class="btn btn-primary" type="submit" value="Save">
-            <input class="btn btn-danger" type="reset" value="Delete">
+            <input class="btn btn-primary" type="submit" value="Save" id="save-button">
+            <input class="btn btn-danger" type="button" value="Delete" id="delete-button">
         </form>
     </div> 
     `);
 
+    for(let i = 0; i < db_status.length; i++) {
+        $("#status").append(`<option value=${i}>${db_status[i]}</option>`)
+    }
+
+    for(let i = 0; i < db_status.length; i++) {
+        $("#resource").append(`<option value=${i}>${db_resource[i]}</option>`)
+    }
+
     $("#name").val(name);
     $("#description").val(description);
-    $("#action-items").val(resource);
+    $("#resource").val(resource);
     $("#status").val(status);
     $("#status-description").val(statusDescription);
     $("#status-description").change(function(){
         $("#update-date").replaceWith(`<input id="update-date" class="form-control" type="text" placeholder="${new Date().toLocaleDateString()}" readonly>`);
+    });
+    $("#save-button").on("click", function(){
+        alert(`${uid} : ${name} has been updated.`);
+        location.reload();
+    });
+    $("#delete-button").on("click", function(){
+        if(confirm(`Confirm deletion of ${uid} : ${name}`) === true) {
+            alert(`${uid} : ${name} has been deleted`);
+            location.reload();
+        } else {
+            alert(`Delete request of ${uid} : ${name} been cancelled`);
+        }
     });
 }
 
@@ -238,7 +251,7 @@ function tabularView() {
                     <th scope="col">update date</th>
                 </tr>
             </thead>
-            <tbody id="entries"></tbody>
+            <tbody></tbody>
         </table>
     </div>
     `);
@@ -259,13 +272,12 @@ function tabularView() {
             <td>${statusDescription}</td>
             <td>${updateDate == null ? "not set" : updateDate.toLocaleDateString()}</td>
         </tr>`;
-
-        $("#entries").append(row);
-        //$("#test").append(row);
+        $("tbody").append(row);
     }
 }
 
 function init() {
+    loadActionItems();
     document.getElementById("new-action-item-button").addEventListener("click", newActionItem, false);
     document.getElementById("open").addEventListener("click", loadActionItems, false);
     document.getElementById("new").addEventListener("click", newActionItem, false);
