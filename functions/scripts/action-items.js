@@ -37,12 +37,26 @@ var db_actionItems = [
         status: 3,
         statusDescription: 'We were able to secure enough for the prototype but not for the entire deliverable',
         updateDate: new Date(2022, 9, 12)
+    },
+    {
+        uid: 'AI-124593', 
+        name:'Replace logic board',
+        description: "the current logic board cannot support faster memory modules.",
+        dateCreated: new Date(2022, 8, 25),
+        dateAssigned: new Date(2022, 8, 26),
+        resource: 2,
+        expectedComp: new Date(2023, 1, 4),
+        actualComp: null,
+        status: 3,
+        statusDescription: 'We were able to secure enough for the prototype but not for the entire deliverable',
+        updateDate: new Date(2022, 9, 12)
     }
 ];
 
-const db_aiMapper = new Map([['AI-736789',0],['AI-774577',1],['AI-444573',2]]);
 const db_status = ["","Open","Closed","In Progress","Hold","Complete"];
 const db_resource = ["R-136789, Sari Ajina","R-144577, Jonathan Chua","R-734257, Mrunal Prakash Gavali","R-835510, Alondra Gonzalez","R-482946, Jeel Prakashkumar Patel","R-270087, Parth Savaj"];
+const db_sortOptions = ["date created", "date assigned","expected completion date","actual completion date","update date"];
+const db_filterOptions = ["resource, status"];
 
 function newActionItem() {
     $("#appBody").replaceWith(`
@@ -73,6 +87,7 @@ function newActionItem() {
                     <select class="form-control" id="resource">
                         <option></option>
                     </select>
+                    <a id="resources-button" href="./resources.html" class="btn btn-secondary" role="button">Add a resource</a>
                 </div>
                 <div class="form-group">
                     <label for="expected-completion-date">Expected Completion Date</label>
@@ -86,6 +101,7 @@ function newActionItem() {
                     <label for="status">Status</label>
                     <select class="form-control" id="status">
                     </select>
+                    <button id="add-status-button" class="btn btn-secondary">Add a status</button>
                 </div>
                 <div class="form-group">
                     <label for="status-description">Status Description</label>
@@ -110,8 +126,13 @@ function newActionItem() {
     }
 
     $("#save-button").on("click", function() {
-        alert("entry saved")
+        alert("entry saved");
         location.reload();
+    });
+
+    $("#add-status-button").on("click", function() {
+        alert("Loading status request form");
+        newActionItem();
     });
 }
 
@@ -134,6 +155,26 @@ function loadActionItems() {
         let { uid, name } = db_actionItems[i];
         $("#action-items").append(`<option value=${i}>${uid} : ${name}</option>`);
     }
+}
+
+function sortAsc(data) {
+    alert(`table contents are now sorted by ${data} in ascending order`);
+    tabularView();
+}
+
+function sortDesc(data) {
+    alert(`table contents are now sorted by ${data} in ascending order`);
+    tabularView();
+}
+
+function filterStatus(data) {
+    alert(`table contents are now filtered by status=${data}`);
+    tabularView();
+}
+
+function filterResource(data) {
+    alert(`table contents are now filtered by resource=${data}`);
+    tabularView();
 }
 
 function formatDate(date, month, year) {
@@ -174,6 +215,7 @@ function openActionItem() {
                 <select class="form-control" id="resource">
                     <option></option>
                 </select>
+                <a id="resources-button" href="./resources.html" class="btn btn-secondary" role="button">Add a resource</a>
             </div>
             <div class="form-group">
                 <label for="expected-completion-date">Expected Completion Date</label>
@@ -187,6 +229,7 @@ function openActionItem() {
                 <label for="status">Status</label>
                 <select class="form-control" id="status">
                 </select>
+                <button id="add-status-button" class="btn btn-secondary">Add a status</button>
             </div>
             <div class="form-group">
                 <label for="status-description">Status Description</label>
@@ -230,12 +273,38 @@ function openActionItem() {
             alert(`Delete request of ${uid} : ${name} been cancelled`);
         }
     });
+    $("#add-status-button").on("click", function() {
+        alert("Loading status request form");
+        newActionItem();
+    });
 }
 
 function tabularView() {
     $("#appBody").replaceWith(`
     <div id="appBody">
-        <table class="table table-striped">
+        <form class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="sort">Sort By</label>
+                    <select class="form-control" id="sort"><option></option></select>
+                    <div class="btn-group" role="group">
+                        <button id="sort-asc-button" class="btn btn-secondary">ascending</button>
+                        <button id="sort-desc-button" class="btn btn-secondary">descending</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="resource-filter">Resource filter</label>
+                    <select class="form-control" id="resource-filter"><option></option></select>
+                    <button id="resource-filter-button" class="btn btn-secondary">filter</button>
+                </div>
+                <div class="col">
+                    <label for="status-filter">Status filter</label>
+                    <select class="form-control" id="status-filter"></select>
+                    <button id="status-filter-button" class="btn btn-secondary">filter</button>
+                </div>
+            </div><br>
+        </form>
+        <table id="tabView" class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">uid</th>
@@ -274,14 +343,33 @@ function tabularView() {
         </tr>`;
         $("tbody").append(row);
     }
+
+    for(let i=0; i < db_sortOptions.length; i++) {
+        $("#sort").append(`<option value="${db_sortOptions[i]}") }>${db_sortOptions[i]}</option>`);
+    }
+
+    for(let i=0; i < db_resource.length; i++) {
+        $("#resource-filter").append(`<option value="${db_resource[i]}") }>${db_resource[i]}</option>`);
+    }
+
+    for(let i=0; i < db_status.length; i++) {
+        $("#status-filter").append(`<option value="${db_status[i]}") }>${db_status[i]}</option>`);
+    }
+
+    $("#sort-asc-button").on("click", function(){ sortAsc($("#sort").val()); });
+    $("#sort-desc-button").on("click", function(){ sortDesc($("#sort").val()); });
+    $("#resource-filter-button").on("click", function(){ filterResource($("#resource-filter").val()); });
+    $("#status-filter-button").on("click", function(){ filterStatus($("#status-filter").val()); });
 }
 
 function init() {
     loadActionItems();
-    document.getElementById("new-action-item-button").addEventListener("click", newActionItem, false);
-    document.getElementById("open").addEventListener("click", loadActionItems, false);
-    document.getElementById("new").addEventListener("click", newActionItem, false);
-    document.getElementById("tab").addEventListener("click", tabularView, false);
+    $("#new-action-item-button").on("click", newActionItem);
+    $("#open-action-item-button").on("click", loadActionItems);
+    $("#tab-action-item-button").on("click", tabularView);
+    $("#open").on("click", loadActionItems);
+    $("#new").on("click", newActionItem);
+    $("#tab").on("click", tabularView);
 }
 
 window.addEventListener("load", init, false);
