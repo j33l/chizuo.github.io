@@ -34,7 +34,7 @@ var db_actionItems = [
         resource: 2,
         expectedComp: new Date(2023, 1, 5),
         actualComp: null,
-        status: 3,
+        status: 1,
         statusDescription: 'We were able to secure enough for the prototype but not for the entire deliverable',
         updateDate: new Date(2022, 9, 12)
     },
@@ -44,10 +44,10 @@ var db_actionItems = [
         description: "the current logic board cannot support faster memory modules.",
         dateCreated: new Date(2022, 8, 25),
         dateAssigned: new Date(2022, 8, 26),
-        resource: 2,
+        resource: 3,
         expectedComp: new Date(2023, 1, 4),
         actualComp: null,
-        status: 3,
+        status: 4,
         statusDescription: 'We were able to secure enough for the prototype but not for the entire deliverable',
         updateDate: new Date(2022, 9, 12)
     }
