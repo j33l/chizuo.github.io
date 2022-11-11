@@ -163,7 +163,7 @@ function sortAsc(data) {
 }
 
 function sortDesc(data) {
-    alert(`table contents are now sorted by ${data} in ascending order`);
+    alert(`table contents are now sorted by ${data} in descending order`);
     tabularView();
 }
 
