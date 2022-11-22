@@ -157,7 +157,7 @@ let db_requirements = [
     uid: "R-736789",
     name: "Requirement 1",
     text: "This is the first requirement",
-    sorceDocument: "Document 1",
+    sourceDocument: "Document 1",
     locationInSourceDocument: "Page 1",
     sourcePage: "Page 1",
     sourceParagraph: "Paragraph 1",
@@ -170,7 +170,7 @@ let db_requirements = [
     uid: "R-736733",
     name: "Requirement 2",
     text: "This is the second requirement",
-    sorceDocument: "Document 2",
+    sourceDocument: "Document 2",
     locationInSourceDocument: "Page 2",
     sourcePage: "Page 2",
     sourceParagraph: "Paragraph 2",
@@ -183,7 +183,7 @@ let db_requirements = [
     uid: "R-732289",
     name: "Requirement 3",
     text: "This is the third requirement",
-    sorceDocument: "Document 3",
+    sourceDocument: "Document 3",
     locationInSourceDocument: "Page 3",
     sourcePage: "Page 3",
     sourceParagraph: "Paragraph 3",
@@ -377,9 +377,7 @@ const db_status = [
   {
     uid: 3,
     name: "Delayed",
-
   },
-
 ];
 
 const db_decision = [
@@ -395,8 +393,8 @@ const db_decision = [
     resource: ["R-736789", "R-736733", "R-736733"],
     expectedCompletionDate: new Date(2022, 7, 30),
     actualCompletionDate: new Date(2022, 7, 30),
-    statusId:[1,2,3],
-    statusDescription:"This is the status description",
+    statusId: [1, 2, 3],
+    statusDescription: "This is the status description",
     updateDate: new Date(2022, 7, 30),
   },
   {
@@ -411,8 +409,8 @@ const db_decision = [
     resource: ["R-736789", "R-736733", "R-736733"],
     expectedCompletionDate: new Date(2022, 7, 30),
     actualCompletionDate: new Date(2022, 7, 30),
-    statusId:[1,2,3],
-    statusDescription:"This is the status description",
+    statusId: [1, 2, 3],
+    statusDescription: "This is the status description",
     updateDate: new Date(2022, 7, 30),
   },
   {
@@ -427,8 +425,8 @@ const db_decision = [
     resource: ["R-736789", "R-736733", "R-736733"],
     expectedCompletionDate: new Date(2022, 7, 30),
     actualCompletionDate: new Date(2022, 7, 30),
-    statusId:[1,2,3],
-    statusDescription:"This is the status description",
+    statusId: [1, 2, 3],
+    statusDescription: "This is the status description",
     updateDate: new Date(2022, 7, 30),
   },
 ];
@@ -446,7 +444,7 @@ const db_priority = [
     uid: "P-732289",
     value: 10,
   },
-];  
+];
 
 const db_impact = [
   {
@@ -461,38 +459,36 @@ const db_impact = [
     uid: "I-732289",
     value: 10,
   },
-
 ];
 
 const db_referenceDocument = [
   {
     uid: "RD-736789",
-    decisionId  : ["D-736789", "D-736733", "D-736733"]
+    decisionId: ["D-736789", "D-736733", "D-736733"],
   },
   {
     uid: "RD-736733",
-    decisionId  : ["D-736789", "D-736733", "D-736733"]
+    decisionId: ["D-736789", "D-736733", "D-736733"],
   },
   {
     uid: "RD-732289",
-    decisionId  : ["D-736789", "D-736733", "D-736733"]
+    decisionId: ["D-736789", "D-736733", "D-736733"],
   },
 ];
 
 const db_meetingNotes = [
   {
     uid: "MN-736789",
-    decisionId  : ["D-736789", "D-736733", "D-736733"]
+    decisionId: ["D-736789", "D-736733", "D-736733"],
   },
   {
-
     uid: "MN-736733",
-    decisionId  : ["D-736789", "D-736733", "D-736733"]
+    decisionId: ["D-736789", "D-736733", "D-736733"],
   },
 
   {
     uid: "MN-732289",
-    decisionId  : ["D-736789", "D-736733", "D-736733"]
+    decisionId: ["D-736789", "D-736733", "D-736733"],
   },
 ];
 
@@ -522,8 +518,8 @@ const db_issues = [
     dateAssigned: new Date(2022, 7, 30),
     expectedCompletionDate: new Date(2022, 7, 30),
     actualCompletionDate: new Date(2022, 7, 30),
-    statusId:[1,2,3],
-    statusDescription:"This is the status description",
+    statusId: [1, 2, 3],
+    statusDescription: "This is the status description",
     updateDate: new Date(2022, 7, 30),
   },
   {
@@ -536,8 +532,8 @@ const db_issues = [
     dateAssigned: new Date(2022, 7, 30),
     expectedCompletionDate: new Date(2022, 7, 30),
     actualCompletionDate: new Date(2022, 7, 30),
-    statusId:[1,2,3],
-    statusDescription:"This is the status description",
+    statusId: [1, 2, 3],
+    statusDescription: "This is the status description",
     updateDate: new Date(2022, 7, 30),
   },
   {
@@ -551,8 +547,8 @@ const db_issues = [
     dateAssigned: new Date(2022, 7, 30),
     expectedCompletionDate: new Date(2022, 7, 30),
     actualCompletionDate: new Date(2022, 7, 30),
-    statusId:[1,2,3],
-    statusDescription:"This is the status description",
+    statusId: [1, 2, 3],
+    statusDescription: "This is the status description",
     updateDate: new Date(2022, 7, 30),
   },
 ];
@@ -574,3 +570,18 @@ const db_predecessor_successorTasks = [
     successorTaskId: ["T-736789", "T-736733", "T-736733"],
   },
 ];
+
+export const db = {
+  db_project,
+  db_resources,
+  db_requirements,
+  db_tasks,
+  db_decision,
+  db_priority,
+  db_impact,
+  db_referenceDocument,
+  db_meetingNotes,
+  db_severity,
+  db_issues,
+  db_predecessor_successorTasks,
+};
