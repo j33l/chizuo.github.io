@@ -74,7 +74,7 @@ function newActionItem() {
   }
 
   for (let i = 0; i < db_status.length; i++) {
-    $("#resource").append(`<option value=${i}>${db_resource[i]}</option>`);
+    $("#resource").append(`<option value=${i}>${db_resources[i]}</option>`);
   }
 
   $("#save-button").on("click", function () {
@@ -203,7 +203,7 @@ function openResource() {
   }
 
   //   for (let i = 0; i < db_status.length; i++) {
-  //     $("#resource").append(`<option value=${i}>${db_resource[i]}</option>`);
+  //     $("#resource").append(`<option value=${i}>${db_resources[i]}</option>`);
   //   }
 
   $("#name").val(name);
@@ -280,7 +280,7 @@ function tabularView() {
     </div>
     `);
 
-  for (let i = 0; i < db_actionItems.length; i++) {
+  for (let i = 0; i < db_resources.length; i++) {
     var {
       uid,
       name,
@@ -293,7 +293,7 @@ function tabularView() {
       status,
       statusDescription,
       updateDate,
-    } = db_actionItems[i];
+    } = db_resources[i];
     var row = `
         <tr>
             <th>${uid}</th>
@@ -305,7 +305,7 @@ function tabularView() {
                 ? "not set"
                 : dateAssigned.toLocaleDateString()
             }</td>
-            <td>${db_resource[resource]}</td>
+            <td>${db_resources[resource]}</td>
             <td>${
               expectedComp == null
                 ? "not set"
