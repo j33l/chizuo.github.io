@@ -1,4 +1,3 @@
-import db from "./db.js";
 
 function newRequirement() {
   $("#appBody").replaceWith(`
