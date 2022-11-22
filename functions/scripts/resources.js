@@ -1,4 +1,3 @@
-const db_status = ["", "Open", "Closed", "In Progress", "Hold", "Complete"];
 const db_sortOptions = [
   "date created",
   "date assigned",
@@ -6,6 +5,7 @@ const db_sortOptions = [
   "actual completion date",
   "update date",
 ];
+
 const db_filterOptions = ["resource, status"];
 
 function newActionItem() {
