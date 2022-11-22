@@ -59,8 +59,8 @@ function loadRequirements() {
         </div> 
     `);
 
-  for (let i = 0; i < db.db_requirements.length; i++) {
-    let { uid, name } = db.db_requirements.length[i];
+  for (let i = 0; i < db_requirements.length; i++) {
+    let { uid, name } = db_requirements.length[i];
     $("#requirements").append(`<option value=${i}>${uid} : ${name}</option>`);
   }
 }
@@ -84,7 +84,7 @@ function formatDate(date, month, year) {
 function openRequirement() {
   let index = document.getElementById("requirements").value;
   let { uid, name, text, source_document, deliverable } =
-    db.db_requirements[index];
+    db_requirements[index];
 
   $("#appBody").replaceWith(`
     <div id="appBody" class="container">
@@ -161,9 +161,9 @@ function tabularView() {
     </div>
     `);
 
-  for (let i = 0; i < db.db_requirements.length; i++) {
+  for (let i = 0; i < db_requirements.length; i++) {
     var { uid, name, text, source_document, deliverable } =
-      db.db_requirements[i];
+      db_requirements[i];
     var row = `
         <tr>
             <th>${uid}</th>

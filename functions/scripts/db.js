@@ -570,18 +570,3 @@ const db_predecessor_successorTasks = [
     successorTaskId: ["T-736789", "T-736733", "T-736733"],
   },
 ];
-
-export const db = {
-  db_project,
-  db_resources,
-  db_requirements,
-  db_tasks,
-  db_decision,
-  db_priority,
-  db_impact,
-  db_referenceDocument,
-  db_meetingNotes,
-  db_severity,
-  db_issues,
-  db_predecessor_successorTasks,
-};
