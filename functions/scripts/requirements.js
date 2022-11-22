@@ -1,4 +1,3 @@
-
 function newRequirement() {
   $("#appBody").replaceWith(`
         <div id="appBody" class="container">
@@ -60,7 +59,7 @@ function loadRequirements() {
     `);
 
   for (let i = 0; i < db_requirements.length; i++) {
-    let { uid, name } = db_requirements.length[i];
+    let { uid, name } = db_requirements[i];
     $("#requirements").append(`<option value=${i}>${uid} : ${name}</option>`);
   }
 }
@@ -162,8 +161,7 @@ function tabularView() {
     `);
 
   for (let i = 0; i < db_requirements.length; i++) {
-    var { uid, name, text, source_document, deliverable } =
-      db_requirements[i];
+    var { uid, name, text, source_document, deliverable } = db_requirements[i];
     var row = `
         <tr>
             <th>${uid}</th>
@@ -182,17 +180,12 @@ function tabularView() {
     );
   }
 
-  
-
- 
   $("#sort-asc-button").on("click", function () {
     sortAsc($("#sort").val());
   });
   $("#sort-desc-button").on("click", function () {
     sortDesc($("#sort").val());
   });
-  
- 
 }
 
 function init() {
