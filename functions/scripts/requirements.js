@@ -53,7 +53,7 @@ function loadRequirements() {
                         <option></option>
                     </select>
                 </div>
-                <input onclick="openRequirement()" id="load-button" class="btn btn-primary" type="submit" value="Open">
+                <input onclick="openRequirement()" id="load-button" class="btn btn-primary" value="Open">
             </form>
         </div> 
     `);
@@ -102,7 +102,7 @@ function openRequirement() {
             </div>
             <div class="form-group">
                 <label for="source-document">Source Document</label>
-                <input id="source-document" class="form-control" type="text" value="${dateCreated.toLocaleDateString()}" readonly>
+                <input id="source-document" class="form-control" type="text" value="44-44-44" readonly>
             </div>
             <input class="btn btn-primary" type="submit" value="Save" id="save-button">
             <input class="btn btn-danger" type="button" value="Delete" id="delete-button">
@@ -111,6 +111,7 @@ function openRequirement() {
     `);
 
   $("#name").val(name);
+  // $("#name").value = name;
   $("#text").val(text);
   $("#source-document").val(source_document);
   $("#deliverable").val(deliverable);
