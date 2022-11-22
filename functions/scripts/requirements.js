@@ -82,8 +82,19 @@ function formatDate(date, month, year) {
 
 function openRequirement() {
   let index = document.getElementById("requirements").value;
-  let { uid, name, text, source_document, deliverable } =
-    db_requirements[index];
+  let {
+    uid,
+    name,
+    text,
+    sourceDocument,
+    locationInSourceDocument,
+    sourcePage,
+    sourceParagraph,
+    clientReference,
+    clientPage,
+    clientParagraph,
+    DeliverableId,
+  } = db_requirements[index];
 
   $("#appBody").replaceWith(`
     <div id="appBody" class="container">
@@ -102,7 +113,27 @@ function openRequirement() {
             </div>
             <div class="form-group">
                 <label for="source-document">Source Document</label>
-                <input id="source-document" class="form-control" type="text" value="44-44-44" readonly>
+                <div>
+                    <label for="source-document-page">Source Document page</label>
+                    <input id="source-document-page" class="form-control" type="number" value="${sourcePage}" readonly>
+                    
+                    <label for="source-document-para">Source Document paragraph</label>
+                    <input id="source-document-para" class="form-control" type="number" value="${sourceParagraph}" readonly>
+                <div>
+            </div>
+            <div class="form-group">
+                <label for="client-reference">Client Reference</label>
+                <div>
+                    <label for="client-reference-page">Client Reference page</label>
+                    <input id="client-reference-page" class="form-control" type="number" value="${clientPage}" readonly>
+                    
+                    <label for="client-reference-para">Client Reference paragraph</label>
+                    <input id="client-reference-para" class="form-control" type="number" value="${clientParagraph}" readonly>
+                <div>
+            </div>
+            <div class="form-group">
+                <label for="source-document">Source Document</label>
+                // Dropdown
             </div>
             <input class="btn btn-primary" type="submit" value="Save" id="save-button">
             <input class="btn btn-danger" type="button" value="Delete" id="delete-button">
@@ -113,8 +144,8 @@ function openRequirement() {
   $("#name").val(name);
   // $("#name").value = name;
   $("#text").val(text);
-  $("#source-document").val(source_document);
-  $("#deliverable").val(deliverable);
+  $("#source-document").val(sourceDocument);
+  $("#deliverable").val(DeliverableId);
 
   $("#save-button").on("click", function () {
     alert(`${uid} : ${name} has been updated.`);
